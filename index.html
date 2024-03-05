@@ -307,7 +307,8 @@
             const featuresText = filteredFeatures
               .map((feature) => {
                 const properties = feature.properties;
-                return `${properties.OBJECTID}, ${properties.nom_aixeca}, ${properties.municipi}`;
+                const area = parseInt(properties.area); // Convertir el valor de área a entero
+                return `ID: ${properties.OBJECTID}, ${properties.nom_aixeca}, ${properties.municipi}, ${area} m2`;
               })
               .join("\n");
 
@@ -354,17 +355,18 @@
             <option value="">Tots</option>
             <option value="Intern">Intern</option>
             <option value="Extern">Extern</option>
-            <option value="S/I">S/I</option>
+            <option value="S/I">Sense informaciò</option>
           </select>
         </li>
         <li>
           <a>Tecnologia</a>
           <select id="tecnologia-filter">
             <option value="">Tots</option>
-            <option value="ET/GPS">ET y GPS</option>
+            <option value="ET/GPS">ET i GPS</option>
             <option value="GPS">GPS</option>
-            <option value="LS">Laser scanner</option>
+            <option value="LS">Làser scanner</option>
             <option value="NIVELL">Nivell</option>
+            <option value="CO">Control obra</option>
           </select>
         </li>
         <li>
@@ -437,7 +439,13 @@
           </select>
         </li>
         <li>
-          <button class="filtro-btn" onclick="aplicarFiltros()">Filtra</button>
+          <button
+            id="Filtrabutton"
+            class="filtro-btn"
+            onclick="aplicarFiltros()"
+          >
+            Filtra
+          </button>
         </li>
       </ul>
     </div>
@@ -448,7 +456,7 @@
     <div class="bottom">
       <p>
         <button onclick="descargarPoligonosFiltrados()">
-          Descargar Polígonos Filtrados
+          Descarregar dades
         </button>
       </p>
     </div>
